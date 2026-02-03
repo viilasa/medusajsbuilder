@@ -78,7 +78,7 @@ const Navbar = () => {
           <span className="logo-text">MedusaJS builder</span>
         </a>
 
-        <div className={`nav - links ${mobileMenuOpen ? 'open' : ''} `}>
+        <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
           <a href="#work" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Work</a>
           <a href="#services" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Services</a>
           <a href="#contact" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Contact</a>
