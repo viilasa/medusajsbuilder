@@ -21,7 +21,8 @@ import {
   Layers,
   Send,
   Menu,
-  X
+  X,
+  Linkedin
 } from 'lucide-react';
 import './App.css';
 
@@ -77,7 +78,7 @@ const Navbar = () => {
           <span className="logo-text">MedusaJS builder</span>
         </a>
 
-        <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className={`nav - links ${mobileMenuOpen ? 'open' : ''} `}>
           <a href="#work" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Work</a>
           <a href="#services" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Services</a>
           <a href="#contact" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Contact</a>
@@ -341,10 +342,10 @@ const Features = () => {
           {features.map((feature, i) => (
             <motion.div
               key={i}
-              className={`feature-card reveal delay-${(i + 1) * 100}`}
+              className={`feature - card reveal delay - ${(i + 1) * 100} `}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
             >
-              <div className={`feature-icon ${feature.color}`}>
+              <div className={`feature - icon ${feature.color} `}>
                 <feature.icon />
               </div>
               <h3 className="feature-title">{feature.title}</h3>
@@ -482,7 +483,7 @@ const Services = () => {
           {services.map((service, i) => (
             <motion.div
               key={i}
-              className={`service-card reveal delay-${(i + 1) * 100}`}
+              className={`service - card reveal delay - ${(i + 1) * 100} `}
               whileHover={{ y: -8 }}
             >
               <div className="service-icon-wrap">
@@ -550,7 +551,7 @@ const CustomDropdown = ({ id, name, label, options, value, onChange, required }:
       <div className="custom-dropdown" ref={dropdownRef}>
         <button
           type="button"
-          className={`dropdown-trigger ${isOpen ? 'open' : ''} ${value ? 'has-value' : ''}`}
+          className={`dropdown - trigger ${isOpen ? 'open' : ''} ${value ? 'has-value' : ''} `}
           onClick={() => setIsOpen(!isOpen)}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
@@ -559,7 +560,7 @@ const CustomDropdown = ({ id, name, label, options, value, onChange, required }:
             <span className="dropdown-icon">{selectedOption.icon}</span>
             <span className="dropdown-text">{selectedOption.label}</span>
           </span>
-          <ChevronDown className={`dropdown-arrow ${isOpen ? 'rotated' : ''}`} />
+          <ChevronDown className={`dropdown - arrow ${isOpen ? 'rotated' : ''} `} />
         </button>
 
         {isOpen && (
@@ -574,7 +575,7 @@ const CustomDropdown = ({ id, name, label, options, value, onChange, required }:
             {options.filter(opt => opt.value !== '').map((option, index) => (
               <motion.li
                 key={option.value}
-                className={`dropdown-option ${value === option.value ? 'selected' : ''}`}
+                className={`dropdown - option ${value === option.value ? 'selected' : ''} `}
                 onClick={() => handleSelect(option.value)}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -675,7 +676,7 @@ const ContactForm = () => {
           'Project Type': selectedWorkType,
           'Budget Range': selectedBudget,
           message: formData.message || 'No additional details provided',
-          _subject: `🚀 New Free Audit Call Request from ${formData.name}`,
+          _subject: `🚀 New Free Audit Call Request from ${formData.name} `,
           _template: 'table'
         })
       });
@@ -745,9 +746,9 @@ const ContactForm = () => {
                 {[11, 12, 13, 14].map(i => (
                   <img key={i} src={`https://i.pravatar.cc/100?img=${i}`} alt="client" className="avatar" />
                 ))}
-              </div>
+              </div >
               <span>Join 50+ brands building on Medusa.js</span>
-            </div>
+            </div >
 
             <motion.a
               href="#contact"
@@ -759,127 +760,129 @@ const ContactForm = () => {
               <span className="audit-cta-text">Book a Free Audit</span>
               <ArrowRight className="audit-cta-arrow" />
             </motion.a>
-          </div>
+          </div >
 
           {/* Right Form */}
-          <motion.div
+          < motion.div
             className="contact-form-wrapper reveal-right"
             whileHover={{ scale: 1.01 }}
           >
             <div className="form-glow"></div>
 
-            {submitted ? (
-              <motion.div
-                className="form-success"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-              >
-                <CheckCircle2 className="success-icon" />
-                <h3>Thank You!</h3>
-                <p>Your free architecture call is being scheduled. We'll reach out within 24 hours to confirm your time slot.</p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="contact-form">
-                <h3>Book Your Free Call</h3>
+            {
+              submitted ? (
+                <motion.div
+                  className="form-success"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                >
+                  <CheckCircle2 className="success-icon" />
+                  <h3>Thank You!</h3>
+                  <p>Your free architecture call is being scheduled. We'll reach out within 24 hours to confirm your time slot.</p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="contact-form">
+                  <h3>Book Your Free Call</h3>
 
-                <div className="form-row">
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="name">Full Name *</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="John Doe"
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="email">Email Address *</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="john@company.com"
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div className="form-group">
-                    <label htmlFor="name">Full Name *</label>
+                    <label htmlFor="company">Company Name</label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="company"
+                      name="company"
+                      value={formData.company}
                       onChange={handleInputChange}
-                      placeholder="John Doe"
+                      placeholder="Your Company"
+                    />
+                  </div>
+
+                  <div className="form-row">
+                    <CustomDropdown
+                      id="workType"
+                      name="workType"
+                      label="Project Type *"
+                      options={workTypes}
+                      value={formData.workType}
+                      onChange={handleDropdownChange}
+                      required
+                    />
+                    <CustomDropdown
+                      id="budget"
+                      name="budget"
+                      label="Budget Range *"
+                      options={budgets}
+                      value={formData.budget}
+                      onChange={handleDropdownChange}
                       required
                     />
                   </div>
+
                   <div className="form-group">
-                    <label htmlFor="email">Email Address *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
+                    <label htmlFor="message">Project Details</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="john@company.com"
-                      required
+                      placeholder="Tell us about your project, goals, and timeline..."
+                      rows={4}
                     />
                   </div>
-                </div>
 
-                <div className="form-group">
-                  <label htmlFor="company">Company Name</label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    placeholder="Your Company"
-                  />
-                </div>
+                  <motion.button
+                    type="submit"
+                    className="btn btn-primary btn-lg btn-full"
+                    disabled={isSubmitting}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {isSubmitting ? (
+                      <span className="loading-spinner"></span>
+                    ) : (
+                      <>
+                        Book Free Call
+                        <Send className="btn-icon" />
+                      </>
+                    )}
+                  </motion.button>
 
-                <div className="form-row">
-                  <CustomDropdown
-                    id="workType"
-                    name="workType"
-                    label="Project Type *"
-                    options={workTypes}
-                    value={formData.workType}
-                    onChange={handleDropdownChange}
-                    required
-                  />
-                  <CustomDropdown
-                    id="budget"
-                    name="budget"
-                    label="Budget Range *"
-                    options={budgets}
-                    value={formData.budget}
-                    onChange={handleDropdownChange}
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="message">Project Details</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Tell us about your project, goals, and timeline..."
-                    rows={4}
-                  />
-                </div>
-
-                <motion.button
-                  type="submit"
-                  className="btn btn-primary btn-lg btn-full"
-                  disabled={isSubmitting}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {isSubmitting ? (
-                    <span className="loading-spinner"></span>
-                  ) : (
-                    <>
-                      Book Free Call
-                      <Send className="btn-icon" />
-                    </>
-                  )}
-                </motion.button>
-
-                <p className="form-disclaimer">
-                  By submitting this form, you agree to our privacy policy. We'll never share your information.
-                </p>
-              </form>
-            )}
-          </motion.div>
-        </div>
-      </div>
-    </section>
+                  <p className="form-disclaimer">
+                    By submitting this form, you agree to our privacy policy. We'll never share your information.
+                  </p>
+                </form>
+              )
+            }
+          </motion.div >
+        </div >
+      </div >
+    </section >
   );
 };
 
@@ -900,9 +903,10 @@ const Footer = () => {
             </a>
             <p>Your trusted partner for headless commerce solutions powered by Medusa.js.</p>
             <div className="social-links">
-              <a href="#" aria-label="Website"><Globe /></a>
-              <a href="#" aria-label="Twitter"><Twitter /></a>
-              <a href="#" aria-label="Email"><Mail /></a>
+              <a href="https://suryaportfolio-omega.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Portfolio"><Globe /></a>
+              <a href="https://x.com/lrdsurya" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><Twitter /></a>
+              <a href="https://www.linkedin.com/in/surya-narayan-51a0a0119/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin /></a>
+              <a href="mailto:viilasacontact@gmail.com" aria-label="Email"><Mail /></a>
             </div>
           </div>
 
