@@ -551,7 +551,7 @@ const CustomDropdown = ({ id, name, label, options, value, onChange, required }:
       <div className="custom-dropdown" ref={dropdownRef}>
         <button
           type="button"
-          className={`dropdown - trigger ${isOpen ? 'open' : ''} ${value ? 'has-value' : ''} `}
+          className={`dropdown-trigger ${isOpen ? 'open' : ''} ${value ? 'has-value' : ''}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
@@ -560,7 +560,7 @@ const CustomDropdown = ({ id, name, label, options, value, onChange, required }:
             <span className="dropdown-icon">{selectedOption.icon}</span>
             <span className="dropdown-text">{selectedOption.label}</span>
           </span>
-          <ChevronDown className={`dropdown - arrow ${isOpen ? 'rotated' : ''} `} />
+          <ChevronDown className={`dropdown-arrow ${isOpen ? 'rotated' : ''}`} />
         </button>
 
         {isOpen && (
@@ -575,7 +575,7 @@ const CustomDropdown = ({ id, name, label, options, value, onChange, required }:
             {options.filter(opt => opt.value !== '').map((option, index) => (
               <motion.li
                 key={option.value}
-                className={`dropdown - option ${value === option.value ? 'selected' : ''} `}
+                className={`dropdown-option ${value === option.value ? 'selected' : ''}`}
                 onClick={() => handleSelect(option.value)}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
