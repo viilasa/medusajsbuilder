@@ -657,24 +657,51 @@ const ContactForm = () => {
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Get labels for dropdown values
+    const selectedWorkType = workTypes.find(w => w.value === formData.workType)?.label || formData.workType;
+    const selectedBudget = budgets.find(b => b.value === formData.budget)?.label || formData.budget;
 
-    setIsSubmitting(false);
-    setSubmitted(true);
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        workType: '',
-        budget: '',
-        message: ''
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/viilasacontact@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || 'Not provided',
+          'Project Type': selectedWorkType,
+          'Budget Range': selectedBudget,
+          message: formData.message || 'No additional details provided',
+          _subject: `🚀 New Free Audit Call Request from ${formData.name}`,
+          _template: 'table'
+        })
       });
-    }, 3000);
+
+      if (response.ok) {
+        setSubmitted(true);
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            workType: '',
+            budget: '',
+            message: ''
+          });
+        }, 5000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch {
+      alert('There was an error submitting the form. Please try again or email us directly at viilasacontact@gmail.com');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
